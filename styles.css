@@ -1,0 +1,452 @@
+/* Base styles */
+:root {
+    --bg-color-light: #f8f9fa;
+    --text-color-light: #343a40;
+    --bg-color-dark: #121212;
+    --text-color-dark: #f8f9fa;
+
+    --primary-color: #007bff;
+    --accent-color: #6c757d;
+    --transition-speed: 0.3s;
+}
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width var(--transition-speed);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+
+#theme-toggle {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    text-align: center;
+    margin-top: 60px; /* Offset for fixed header */
+}
+
+.hero .btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.hero .btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* About Section */
+.about {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    flex-wrap: wrap;
+}
+
+.about-content img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+}
+
+.about-content p {
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+/* Projects Section */
+.projects {
+    padding: 4rem 2rem;
+    background-color: #f1f1f1;
+}
+
+.projects .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background-color: white;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.project-card h3 {
+    margin: 1rem 0 0.5rem 0;
+}
+
+.project-card p {
+    flex: 1;
+    text-align: center;
+}
+
+.project-card .modal-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.project-card .modal-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+}
+
+.modal-content .btn {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color var(--transition-speed);
+}
+
+.modal-content .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Contact Section */
+.contact {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact form label {
+    align-self: flex-start;
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+.contact form input, 
+.contact form textarea {
+    width: 80%;
+    padding: 0.8rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 1rem;
+}
+
+.contact form button {
+    width: 40%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.contact form button:hover {
+    background-color: #0056b3;
+}
+
+#form-message {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: green;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+footer .social-links {
+    margin-top: 0.5rem;
+}
+
+footer .social-links a {
+    color: white;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color var(--transition-speed);
+}
+
+footer .social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-mode header {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #1f1f1f, #343a40);
+}
+
+body.dark-mode .about,
+body.dark-mode .projects,
+body.dark-mode .contact {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode .project-card {
+    border: 1px solid #444;
+    background-color: #2c2c2c;
+}
+
+body.dark-mode .modal-content {
+    background-color: #2c2c2c;
+    color: #f8f9fa;
+    border: 1px solid #444;
+}
+
+body.dark-mode footer {
+    background-color: #343a40;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav {
+        display: none;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+    }
+    
+    nav.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .contact form label,
+    .contact form input,
+    .contact form textarea {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .contact form button {
+        width: 60%;
+    }
+}
+
+/* Light and Dark Mode */
+html[data-theme="dark"] {
+    background-color: #121212;
+    color: #f8f9fa;
+}
+
+html[data-theme="dark"] header {
+    background-color: #1a73e8;
+}
+
+html[data-theme="dark"] .hero {
+    background-color: #1a1a1a;
+}
+
+html[data-theme="dark"] footer {
+    background-color: #1a73e8;
+}
+
+html[data-theme="dark"] .project-card {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+html[data-theme="dark"] .modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+html[data-theme="dark"] .modal-content {
+    background-color: #333;
+    color: white;
+}
+
+/* Adjust other sections similarly */
